@@ -10,15 +10,12 @@ $baseZIndex: 10;
   background-color: inherit;
   &-color {
     &-mask {
-      width: 182px;
-      height: 182px;
-      background-color: #FFE8E8;
-      box-sizing: border-box;
-      border-radius: 50%;
+      width: fit-content;
+      height: fit-content;
       position: absolute;
       left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%) rotate(-45deg);
+      transform: translate(-50%, -50%) rotate(135deg);
       z-index: $baseZIndex - 2;
     }
     &-wheel {
