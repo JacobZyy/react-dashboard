@@ -31,9 +31,7 @@ enum Quadrant {
   fourth,
 }
 
-type GetBezierConfigParams = Required<Omit<ClipPathConfig, 'radio' | 'centerPos' >> & {
-  quadrantInfo: Quadrant
-}
+type GetBezierConfigParams = Required<Omit<ClipPathConfig, 'radio' | 'centerPos' >>
 
 function getFixedNumber(n: number) {
   return Math.round(n * 10000) / 10000
@@ -51,24 +49,17 @@ function getHValue(angle: number): number {
   return 4 / 3 * ((1 - cosAngle(angle / 2)) / sinAngle(angle / 2))
 }
 
-function getRotatedPoint(p: Position, quadrant: Quadrant): Position {
-  if (quadrant === Quadrant.first || quadrant === Quadrant.second)
-    return p
-  const [x, y] = p
-  return [-x, -y]
-}
-
 /**
  * 以单位圆计算bezier曲线的四个点
  * 以第一象限为基准，其余象限的均根据第一象限的点进行对称变换获得
  */
 function getBaseBezierConfig(config: GetBezierConfigParams): BezierConfig {
-  const { angle, startPos, quadrantInfo } = config
-  const startAngle = Math.atan(Math.abs(startPos[1]) / startPos[0]) / Math.PI * 180
+  const { angle, startPos } = config
+  const startAngle = Math.atan(startPos[1] / startPos[0]) / Math.PI * 180
   const endAngle = angle + startAngle
 
   const startHValue = startAngle === 0 ? getHValue(endAngle) : getHValue(startAngle)
-  const endHValue = endAngle % 180 === 0 ? getHValue(startAngle) : getHValue(endAngle)
+  const endHValue = getHValue(endAngle)
 
   const pointD: Position = [(cosAngle(startAngle)), (sinAngle(startAngle))]
   const pointC: Position = [(cosAngle(startAngle) - startHValue * sinAngle(startAngle)), (sinAngle(startAngle) + startHValue * cosAngle(startAngle))]
@@ -77,10 +68,10 @@ function getBaseBezierConfig(config: GetBezierConfigParams): BezierConfig {
   const pointB: Position = [(cosAngle(endAngle) + endHValue * sinAngle(endAngle)), (sinAngle(endAngle) - endHValue * cosAngle(endAngle))]
 
   return {
-    pointA: getRotatedPoint(pointA, quadrantInfo),
-    pointB: getRotatedPoint(pointB, quadrantInfo),
-    pointC: getRotatedPoint(pointC, quadrantInfo),
-    pointD: getRotatedPoint(pointD, quadrantInfo),
+    pointA,
+    pointB,
+    pointC,
+    pointD,
   }
 }
 
@@ -116,6 +107,27 @@ function isLegalStartPosition(startPos: Position, centerPos: Position, radio: nu
   return deltaX * deltaX + deltaY * deltaY - radio * radio < 1e-3
 }
 
+const PointRotateMap: Record<Quadrant, (p: Position) => Position> = {
+  [Quadrant.first]: p => p,
+  [Quadrant.second]: ([x, y]) => ([-y, x] as Position),
+  [Quadrant.third]: ([x, y]) => ([-x, -y] as Position),
+  [Quadrant.fourth]: ([x, y]) => ([y, -x] as Position),
+}
+
+function getQuadrantBezierConfig(config: GetBezierConfigParams, quadrant: Quadrant) {
+  const rotatePoint = PointRotateMap[quadrant]
+  const { startPos, ...restConfig } = config
+  const fixedStartPos: Position = rotatePoint(startPos)
+  const { pointA, pointB, pointC, pointD } = getBaseBezierConfig({ startPos: fixedStartPos, ...restConfig })
+
+  return {
+    pointA: rotatePoint(pointA),
+    pointB: rotatePoint(pointB),
+    pointC: rotatePoint(pointC),
+    pointD: rotatePoint(pointD),
+  }
+}
+
 function getFullBezierPoints(config: ClipPathConfig) {
   const { radio, angle, centerPos = [radio, radio], startPos = [2 * radio, radio] } = config
   if (!isLegalStartPosition(startPos, centerPos, radio))
@@ -129,13 +141,14 @@ function getFullBezierPoints(config: ClipPathConfig) {
   let currentAngle = angle % 360 || 360
 
   const bezierConfigs: BezierConfig[] = []
-  let quarterCount = 0
-  while (currentAngle > 90) {
+  let currentQuadrant = startQuadrant
+
+  while (currentAngle > 0) {
+    const angle = currentAngle > 90 ? 90 : currentAngle
+    bezierConfigs.push(getQuadrantBezierConfig({ angle, startPos: startPositionArrays[currentQuadrant] }, currentQuadrant))
     currentAngle -= 90
-    bezierConfigs.push(getBaseBezierConfig({ quadrantInfo: quarterCount + startQuadrant, angle: 90, startPos: startPositionArrays[quarterCount] }))
-    quarterCount += 1
+    currentQuadrant += 1
   }
-  bezierConfigs.push(getBaseBezierConfig({ quadrantInfo: startQuadrant + quarterCount, angle: currentAngle, startPos: startPositionArrays[quarterCount] }))
   const bezierOffsetConfig: BezierConfig[] = bezierConfigs.map((config) => {
     const { pointA, pointB, pointC, pointD } = config
     return {
@@ -185,17 +198,3 @@ export function getRingPath(config: RingPathConfig) {
   }).join('')
   return `M${outerStartPos.join(' ')}\nL${innerStartPos.join(' ')}\n${innerCValue}L${outerEndPos.join(' ')}\n${outerCValue}\nZ`
 }
-
-// let value2 = getSectorPath({
-//   radio: 90,
-//   angle: 135,
-// })
-
-// console.log(value2)
-
-// value2 = getSectorPath({
-//   radio: 90,
-//   angle: 180,
-// })
-
-// console.log(value2)
