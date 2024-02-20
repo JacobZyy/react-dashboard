@@ -15,7 +15,7 @@ function DashBoardSmallRing(props: DashBoardProps) {
     backgroundColor,
     fillColor,
     smallRingSize = 16,
-    ringWidth = 5,
+    ringWidth,
   } = props
   const getSmallRingPos = (pathConfig: RingPathConfig): Pick<CSSProperties, 'left' | 'top' | 'transform'> => {
     const { outerRadio, innerRadio, angle: originAngle } = pathConfig
@@ -31,11 +31,12 @@ function DashBoardSmallRing(props: DashBoardProps) {
   }
 
   const smallRingPos = getSmallRingPos(ringPathConfig)
+  const calculatedRingWidth = ringWidth ?? smallRingSize * 0.3125
 
   const smallRingStyle: CSSProperties = {
     position: 'absolute',
     background: backgroundColor,
-    border: `${ringWidth}px solid ${fillColor}`,
+    border: `${calculatedRingWidth}px solid ${fillColor}`,
     boxSizing: 'border-box',
     width: smallRingSize,
     height: smallRingSize,

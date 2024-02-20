@@ -20,6 +20,7 @@ interface DashboardProps {
 }
 
 const updateStep = 0.5
+const defaultDashBoardSize = 188
 
 const defaultBackgroundColor = 'conic-gradient(from 90deg at 50% 50%, #8FFF00 45deg, #11CF00 77.5deg, #FFD80E 103.5deg, #FF7A00 182deg, #FE3B36 315deg)'
 
@@ -28,7 +29,7 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
     backgroundColor = '#fff',
     title = 'title',
     percent: targetPercent,
-    dashBoardSize = 188,
+    dashBoardSize = defaultDashBoardSize,
     wheelBackground = defaultBackgroundColor,
     wheelCls,
     wheelWidth = 8,
@@ -90,11 +91,11 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
     <div className="dashboard" style={dashBoardStyle}>
 
       <DashBoardRing {...dashBoardRingConfig} />
-      <DashBoardSmallRing ringPathConfig={ringPathConfig} fillColor={curColor} backgroundColor={backgroundColor} />
+      <DashBoardSmallRing smallRingSize={wheelWidth * 2} ringPathConfig={ringPathConfig} fillColor={curColor} backgroundColor={backgroundColor} />
       <DashBoardMask {...dashBoardMaskConfig} />
 
       <div className="dashboard-data">
-        <DashBoardArrow fillColor={curColor} percent={percent} />
+        <DashBoardArrow fillColor={curColor} percent={percent} scaleSize={dashBoardSize / defaultDashBoardSize} />
         <div className="dashboard-data-circle">
           <span className="dashboard-data-title">{title}</span>
           <span className="dashboard-data-percent">
