@@ -1,14 +1,25 @@
+import type { CSSProperties } from 'react'
 import { getSectorPath } from '@/utils/getClipPathValue'
 
-interface DashBoardMaskProps {
+export interface DashBoardMaskProps {
   fillColor: string
+  className?: string
+  size: number
 }
 
-function DashBoardMask({ fillColor }: DashBoardMaskProps) {
+function DashBoardMask({ fillColor, className, size }: DashBoardMaskProps) {
+  const maskPathVal = getSectorPath({ radio: 90, angle: 270 })
+  const maskStyle: CSSProperties = {
+    background: fillColor,
+    clipPath: `path("${maskPathVal}")`,
+    transform: 'rotate(135deg)',
+    width: size,
+    height: size,
+  }
   return (
-    <svg width={180} height={180} viewBox="0 0 180 180">
-      <path d={getSectorPath({ radio: 90, angle: 270 })} fill={fillColor} />
-    </svg>
+    <div className="dashboard-color-mask">
+      <div className={className} style={maskStyle} />
+    </div>
   )
 }
 

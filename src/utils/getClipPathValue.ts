@@ -93,12 +93,12 @@ function getOffsetPointPosition(point: Position, centerPos: Position, radio: num
 function getClipPathValueFromBezierConfig(bezierConfig: BezierConfig[], clipPathConfig: ClipPathConfig) {
   const { radio, angle, centerPos = [radio, radio], startPos = [2 * radio, radio] } = clipPathConfig
   const CValue = bezierConfig.map(({ pointA, pointB, pointC }) => {
-    return `C${pointC.join(' ')} ${pointB.join(' ')} ${pointA.join(' ')}\n`
+    return `C${pointC.join(' ')} ${pointB.join(' ')} ${pointA.join(' ')}`
   }).join('')
   if (angle === 360)
     return `M${startPos.join(' ')}${CValue}Z`
   else
-    return `M${centerPos.join(' ')}\nL${startPos.join(' ')}\n${CValue}Z`
+    return `M${centerPos.join(' ')}L${startPos.join(' ')}${CValue}Z`
 }
 
 function isLegalStartPosition(startPos: Position, centerPos: Position, radio: number) {
@@ -138,7 +138,7 @@ function getFullBezierPoints(config: ClipPathConfig) {
   const unitStartPos: Position = [(startPos[0] - centerPos[0]) / radio, (startPos[1] - centerPos[1]) / radio]
 
   const [startQuadrant, startPositionArrays] = getStartPositionList(unitStartPos)
-  let currentAngle = angle % 360 || 360
+  let currentAngle = angle % 360
 
   const bezierConfigs: BezierConfig[] = []
   let currentQuadrant = startQuadrant
@@ -191,10 +191,10 @@ export function getRingPath(config: RingPathConfig) {
     return `${outerPath}${innerPath}`
   }
   const innerCValue = innerPoints.map(({ pointA, pointB, pointC }) => {
-    return `C${pointC.join(' ')} ${pointB.join(' ')} ${pointA.join(' ')}\n`
+    return `C${pointC.join(' ')} ${pointB.join(' ')} ${pointA.join(' ')}`
   }).join('')
   const outerCValue = outerPoints.reverse().map(({ pointB, pointC, pointD }) => {
-    return `C${pointB.join(' ')} ${pointC.join(' ')} ${pointD.join(' ')}\n`
+    return `C${pointB.join(' ')} ${pointC.join(' ')} ${pointD.join(' ')}`
   }).join('')
-  return `M${outerStartPos.join(' ')}\nL${innerStartPos.join(' ')}\n${innerCValue}L${outerEndPos.join(' ')}\n${outerCValue}\nZ`
+  return `M${outerStartPos.join(' ')}L${innerStartPos.join(' ')}${innerCValue}L${outerEndPos.join(' ')}${outerCValue}Z`
 }

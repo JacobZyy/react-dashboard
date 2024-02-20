@@ -1,24 +1,29 @@
+import type { CSSProperties } from 'react'
 import { type RingPathConfig, getRingPath } from '@/utils/getClipPathValue'
 
-interface DashBoardRingProps {
+export type DashBoardRingProps = {
   pathConfig: RingPathConfig
-}
+  className?: string
+} & Required<Pick< CSSProperties, 'background'>>
 
 function DashBoardRing(props: DashBoardRingProps) {
-  const { pathConfig } = props
+  const { pathConfig, background, className } = props
   const ringPathValue = getRingPath(pathConfig)
   const { outerRadio } = pathConfig
   const size = outerRadio * 2
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d={ringPathValue}
-        fill="red"
-      />
+  const ringStyle: CSSProperties = {
+    width: size,
+    height: size,
+    background,
+    borderRadius: '50%',
+    clipPath: `path('${ringPathValue}')`,
+    transform: 'rotate(135deg)',
+  }
 
-    </svg>
+  return (
+    <div className="dashboard-color-wheel">
+      <div className={className} style={ringStyle} />
+    </div>
   )
 }
 
