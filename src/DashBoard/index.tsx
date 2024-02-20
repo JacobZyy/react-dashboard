@@ -107,8 +107,8 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
         <div style={dashBoardDataStyle} className={classNames('dashboard-data-circle', dashBoardDataCls)}>
           <span className="dashboard-data-circle-title">{title}</span>
           <span className="dashboard-data-circle-percent">
-            {Math.floor(percent)}
-            <span className="dashboard-data-circle-percent--icon">%</span>
+            {(Math.floor(percent)) || '--'}
+            {!!percent && <span className="dashboard-data-circle-percent--icon">%</span>}
           </span>
         </div>
       </div>

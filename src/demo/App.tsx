@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
       <input type="number" onChange={handleUpdatePercent} />
-      <DashBoard percent={state} title="AI Percent" dashBoardSize={188} />
+      <DashBoard percent={state} title="AI Score" dashBoardSize={188} />
     </div>
   )
 }
