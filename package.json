@@ -9,6 +9,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "peerDependencies": {
+    "classnames": "^2.5.1"
+  },
   "dependencies": {
     "@antfu/eslint-config": "^2.6.4",
     "eslint-plugin-import": "^2.29.1",

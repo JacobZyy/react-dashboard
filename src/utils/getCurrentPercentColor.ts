@@ -80,7 +80,7 @@ function getPercentStartEndColor(percent: number, colorList: ColorListItemType[]
 function getColorByPercent(percent: number, startColor: RGBColorType, endColor: RGBColorType): RGBColorType {
   const finalColor: RGBColorType = [0, 0, 0, 100]
   return finalColor.map((_, idx) => {
-    return percent / 100 * (endColor[idx] - startColor[idx]) + startColor[idx]
+    return Math.round(percent / 100 * (endColor[idx] - startColor[idx]) + startColor[idx])
   }) as RGBColorType
 }
 
@@ -123,8 +123,10 @@ function getCurrentPercentColor(originPercent: number, backgroundColor: string) 
   return `rgba(${r}, ${g}, ${b}, ${a / 100})`
 }
 
+export function getColorWithOpacity(color: string, alpha: number) {
+  const colorConfig = hexToRgb(color)
+  const baseColor = colorConfig.splice(0, 3).join(',')
+  return `rgba(${baseColor},${alpha})`
+}
+
 export default getCurrentPercentColor
-
-const defaultBackgroundColor = 'conic-gradient(from 90deg at 50% 50%, #8FFF00 45deg, #11CF00 77.5deg, #FFD80E 103.5deg, #FF7A00 182deg, #589 315.5deg, rgba(0, 0, 0, 100%) 335.5deg)'
-
-getCurrentPercentColor(30, defaultBackgroundColor)

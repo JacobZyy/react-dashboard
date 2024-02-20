@@ -9,12 +9,12 @@ function App() {
     setState(percent)
   }
 
-  const testBkg = 'conic-gradient(from 90deg at 50% 50%, #69C7BC 0deg, #69C7BC 44.93379235267639deg, #38A1DD 77.43765950202942deg, #B052D1 142.20000386238098deg, #F12F75 182.07465648651123deg, #FF00B8 315.5447030067444deg)'
+  // const testBkg = 'conic-gradient(from 90deg at 50% 50%, #69C7BC 0deg, #69C7BC 44.93379235267639deg, #38A1DD 77.43765950202942deg, #B052D1 142.20000386238098deg, #F12F75 182.07465648651123deg, #FF00B8 315.5447030067444deg)'
 
   return (
     <div>
       <input type="number" onChange={handleUpdatePercent} />
-      <DashBoard percent={state} wheelBackground={testBkg} wheelWidth={20} title="AI Percent" dashBoardSize={500} />
+      <DashBoard percent={state} title="AI Percent" dashBoardSize={188} />
     </div>
   )
 }

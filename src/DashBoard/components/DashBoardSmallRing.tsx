@@ -41,7 +41,6 @@ function DashBoardSmallRing(props: DashBoardProps) {
     width: smallRingSize,
     height: smallRingSize,
     borderRadius: '50%',
-    transition: `0.3s ease-in-out background-color`,
     ...smallRingPos,
   }
 

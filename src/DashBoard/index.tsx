@@ -1,6 +1,7 @@
 import React, { type CSSProperties, useEffect, useRef, useState } from 'react'
 import './index.scss'
-import getCurrentPercentColor from '../utils/getCurrentPercentColor'
+import classNames from 'classnames'
+import getCurrentPercentColor, { getColorWithOpacity } from '../utils/getCurrentPercentColor'
 import type { DashBoardMaskProps } from './components/DashBoardMask'
 import DashBoardMask from './components/DashBoardMask'
 import type { DashBoardRingProps } from './components/DashBoardRing'
@@ -11,12 +12,12 @@ import DashBoardArrow from './components/DashBoardArrow'
 interface DashboardProps {
   percent: number
   title?: string
-  backgroundColor?: string
-  wheelWidth?: number
   wheelCls?: string
-  wheelBackground?: string
-  dashBoardSize?: number
   maskCls?: string
+  dashBoardDataCls?: string
+  dashBoardSize?: number
+  wheelBackground?: string
+  backgroundColor?: string
 }
 
 const updateStep = 0.5
@@ -32,12 +33,15 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
     dashBoardSize = defaultDashBoardSize,
     wheelBackground = defaultBackgroundColor,
     wheelCls,
-    wheelWidth = 8,
     maskCls,
+    dashBoardDataCls,
   } = props
   const [percent, setPercent] = useState<number>(0)
+
   const latestPercent = useRef<number>(percent)
   latestPercent.current = percent
+
+  const wheelWidth = dashBoardSize * 0.05
 
   useEffect(() => {
     const fixedTargetPercent = Math.min(Math.max(0, targetPercent), 100)
@@ -82,9 +86,13 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
   }
 
   const dashBoardMaskConfig: DashBoardMaskProps = {
-    fillColor: '#ffe8e8',
+    fillColor: getColorWithOpacity(curColor, 0.08),
     className: maskCls,
     size: dashBoardSize - wheelWidth,
+  }
+
+  const dashBoardDataStyle: CSSProperties = {
+    color: curColor,
   }
 
   return (
@@ -96,11 +104,11 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
 
       <div className="dashboard-data">
         <DashBoardArrow fillColor={curColor} percent={percent} scaleSize={dashBoardSize / defaultDashBoardSize} />
-        <div className="dashboard-data-circle">
-          <span className="dashboard-data-title">{title}</span>
-          <span className="dashboard-data-percent">
+        <div style={dashBoardDataStyle} className={classNames('dashboard-data-circle', dashBoardDataCls)}>
+          <span className="dashboard-data-circle-title">{title}</span>
+          <span className="dashboard-data-circle-percent">
             {Math.floor(percent)}
-            %
+            <span className="dashboard-data-circle-percent--icon">%</span>
           </span>
         </div>
       </div>

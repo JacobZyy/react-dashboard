@@ -9,16 +9,20 @@ export interface DashBoardMaskProps {
 
 function DashBoardMask({ fillColor, className, size }: DashBoardMaskProps) {
   const maskPathVal = getSectorPath({ radio: Math.round(size / 2), angle: 270 })
-  const maskStyle: CSSProperties = {
-    background: fillColor,
-    clipPath: `path("${maskPathVal}")`,
-    transform: 'rotate(135deg)',
+  const maskCommonStyle: CSSProperties = {
     width: size,
     height: size,
+    clipPath: `path("${maskPathVal}")`,
+  }
+  const maskStyle: CSSProperties = {
+    background: fillColor,
+    ...maskCommonStyle,
   }
   return (
     <div className="dashboard-color-mask">
-      <div className={className} style={maskStyle} />
+      <div className="dashboard-color-mask--bkg" style={maskCommonStyle}>
+        <div className={className} style={maskStyle} />
+      </div>
     </div>
   )
 }
