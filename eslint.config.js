@@ -5,3 +5,4 @@ export default antfu({ typescript: true }, {}, {
     'no-console': 'warn',
   },
 })
+
