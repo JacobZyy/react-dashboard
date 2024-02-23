@@ -1,12 +1,12 @@
 {
   "name": "react-rainbow-dashboard",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "exports": {
     ".": {
-      "import": "./dist/react-dashbooard.js",
-      "require": "./dist/react-dashbooard.umd.cjs"
+      "import": "./dist/react-dashboard.js",
+      "require": "./dist/react-dashboard.umd.cjs"
     }
   },
   "main": "./dist/react-dashbooard.umd.cjs",
