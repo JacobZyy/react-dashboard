@@ -1,16 +1,16 @@
 {
-  "name": "react-dashboard",
+  "name": "react-rainbow-dashboard",
   "type": "module",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "private": false,
   "exports": {
     ".": {
-      "import": "./dist/react-dsahbooard.js",
-      "require": "./dist/react-dsahbooard.umd.cjs"
+      "import": "./dist/react-dashbooard.js",
+      "require": "./dist/react-dashbooard.umd.cjs"
     }
   },
-  "main": "./dist/react-dsahbooard.umd.cjs",
-  "module": "./dist/react-dsahbooard.js",
+  "main": "./dist/react-dashbooard.umd.cjs",
+  "module": "./dist/react-dashboard.js",
   "files": [
     "dist"
   ],
@@ -32,6 +32,8 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
+    "classnames": "^2.5.1",
+    "react": "^18.0.0",
     "@commitlint/config-conventional": "^17.1.0",
     "@types/node": "^20.11.20",
     "@types/react": "^18.2.43",
