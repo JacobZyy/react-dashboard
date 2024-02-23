@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -7,6 +8,22 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/': '/src/',
+    },
+  },
+  build: {
+    lib: {
+      entry: resolve(__dirname, './src'),
+      name: 'ReactDashBoard',
+      fileName: 'react-dashboard',
+    },
+    rollupOptions: {
+      external: ['react', 'classnames'],
+      output: {
+        globals: {
+          react: 'React',
+          classnames: 'classNames',
+        },
+      },
     },
   },
   server: {
