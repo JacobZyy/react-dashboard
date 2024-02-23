@@ -17,6 +17,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "release": "standard-version",
     "lint": "eslint --fix",
     "prepare": "husky install"
   },
@@ -42,10 +43,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "gulp": "^4.0.2",
-    "lint-staged": "^15.2.1",
     "husky": "^8.0.0",
+    "lint-staged": "^15.2.1",
     "react-dom": "^18.2.0",
     "sass": "^1.70.0",
+    "standard-version": "^9.5.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },
