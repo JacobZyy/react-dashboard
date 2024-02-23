@@ -1,7 +1,7 @@
 {
   "name": "react-dashboard",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "exports": {
     ".": {
@@ -11,7 +11,9 @@
   },
   "main": "./dist/react-dsahbooard.umd.cjs",
   "module": "./dist/react-dsahbooard.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -44,7 +46,6 @@
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
-
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
