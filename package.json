@@ -1,7 +1,7 @@
 {
   "name": "react-rainbow-dashboard",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "private": false,
   "exports": {
     ".": {
