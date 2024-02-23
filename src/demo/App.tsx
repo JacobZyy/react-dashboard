@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import DashBoard from '..'
+import { DashBoard } from '..'
 import './App.css'
 
 function App() {
