@@ -1,13 +1,14 @@
 import React, { type CSSProperties, useEffect, useRef, useState } from 'react'
+
 import './index.scss'
 import classNames from 'classnames'
 import getCurrentPercentColor, { getColorWithOpacity } from '../utils/getCurrentPercentColor'
 import type { DashBoardMaskProps } from './components/DashBoardMask'
-import DashBoardMask from './components/DashBoardMask'
+import DashBoardArrow from './components/DashBoardArrow'
 import type { DashBoardRingProps } from './components/DashBoardRing'
 import DashBoardRing from './components/DashBoardRing'
 import DashBoardSmallRing from './components/DashBoardSmallRing'
-import DashBoardArrow from './components/DashBoardArrow'
+import DashBoardMask from './components/DashBoardMask'
 
 interface DashboardProps {
   percent: number
@@ -96,15 +97,15 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
   }
 
   return (
-    <div className="dashboard" style={dashBoardStyle}>
+    <div className="dashboard relative flex items-center justify-center border-rounded-50%" style={dashBoardStyle}>
 
       <DashBoardRing {...dashBoardRingConfig} />
       <DashBoardSmallRing smallRingSize={wheelWidth * 2} ringPathConfig={ringPathConfig} fillColor={curColor} backgroundColor={backgroundColor} />
       <DashBoardMask {...dashBoardMaskConfig} />
 
-      <div className="dashboard-data">
+      <div className="dashboard-data relative h-68% w-68%">
         <DashBoardArrow fillColor={curColor} percent={percent} scaleSize={dashBoardSize / defaultDashBoardSize} />
-        <div style={dashBoardDataStyle} className={classNames('dashboard-data-circle', dashBoardDataCls)}>
+        <div style={dashBoardDataStyle} className={classNames('dashboard-data-circle w-full h-full border-rd-50% border-white', dashBoardDataCls)}>
           <span className="dashboard-data-circle-title">{title}</span>
           <span className="dashboard-data-circle-percent">
             {(Math.floor(percent)) || '--'}

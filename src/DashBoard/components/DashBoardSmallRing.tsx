@@ -34,19 +34,16 @@ function DashBoardSmallRing(props: DashBoardProps) {
   const calculatedRingWidth = ringWidth ?? smallRingSize * 0.3125
 
   const smallRingStyle: CSSProperties = {
-    position: 'absolute',
     background: backgroundColor,
     border: `${calculatedRingWidth}px solid ${fillColor}`,
-    boxSizing: 'border-box',
     width: smallRingSize,
     height: smallRingSize,
-    borderRadius: '50%',
     ...smallRingPos,
   }
 
   return (
     <div className="dashboard-color-ring">
-      <div style={smallRingStyle} />
+      <div style={smallRingStyle} className="position-absolute box-border border-rounded-50%" />
     </div>
   )
 }

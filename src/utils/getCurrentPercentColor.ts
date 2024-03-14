@@ -4,6 +4,7 @@ type RGBColorType = [
   B: number,
   A: number,
 ]
+
 type ColorListItemType = [color: RGBColorType, percent: number]
 
 function simpleColorToFull(str: string) {
