@@ -34,6 +34,7 @@
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@eslint/eslintrc": "^3.0.1",
+    "@types/chroma-js": "^2.4.4",
     "@types/node": "^20.11.20",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
@@ -55,6 +56,7 @@
     "standard-version": "^9.5.0",
     "typescript": "^5.2.2",
     "unocss": "^0.58.5",
+    "unocss-preset-chroma-forked": "^0.0.3",
     "vite": "^5.0.8"
   },
   "commitlint": {

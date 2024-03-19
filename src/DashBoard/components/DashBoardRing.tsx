@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import classNames from 'classnames'
 import { type RingPathConfig, getRingPath } from '@/utils/getClipPathValue'
 
 export type DashBoardRingProps = {
@@ -15,14 +16,12 @@ function DashBoardRing(props: DashBoardRingProps) {
     width: size,
     height: size,
     background,
-    borderRadius: '50%',
     clipPath: `path('${ringPathValue}')`,
-    transform: 'rotate(135deg)',
   }
 
   return (
-    <div className="dashboard-color-wheel">
-      <div className={className} style={ringStyle} />
+    <div className="color-wheel absolute z-9 flex items-center justify-center">
+      <div className={classNames(className, 'border-rd-50% rotate-135deg')} style={ringStyle} />
     </div>
   )
 }

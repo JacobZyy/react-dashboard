@@ -1,4 +1,3 @@
-// uno.config.ts
 import {
   defineConfig,
   presetIcons,
@@ -22,13 +21,20 @@ export default defineConfig({
     transformerVariantGroup(),
   ],
   rules: [
-    [/^radial-gradient-(.*)$/, ([, c], { rawSelector }) => {
+    // [/^border-(.*)$/, ([, c], { rawSelector }) => {
+    //   const selector = toEscapedSelector(rawSelector)
+    //   return `
+    //   ${selector} {
+    //     background: radial-gradient(${c});
+    //   }
+    //   `
+    // }],
+    [/^letter-spacing-(.+)$/, ([, c], { rawSelector }) => {
       const selector = toEscapedSelector(rawSelector)
-      return `
-      ${selector} {
-        background: radial-gradient(${c});
-      }
-      `
+      return `${selector} {
+        --letter-spacing: ${c};
+        letter-spacing: var(--letter-spacing);
+      }`
     }],
   ],
 
