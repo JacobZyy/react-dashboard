@@ -1,6 +1,5 @@
 import React, { type CSSProperties, useEffect, useRef, useState } from 'react'
 
-import './index.scss'
 import classNames from 'classnames'
 import getCurrentPercentColor, { getColorWithOpacity } from '../utils/getCurrentPercentColor'
 import type { DashBoardMaskProps } from './components/DashBoardMask'
