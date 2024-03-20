@@ -18,7 +18,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc -p ./tsconfig.types.json",
-    "release": "standard-version",
+    "release": "standard-version && git push --follow-tags origin main && npm publish",
     "lint": "eslint --fix",
     "prepare": "husky install"
   },
