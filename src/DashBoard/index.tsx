@@ -116,9 +116,9 @@ const DashBoard: React.FC<DashBoardProps> = (props) => {
         <DashBoardArrow dashBoardSize={dashBoardSize} smallRingBackground={bgColor} fillColor={curColor} percent={percent} />
         <div style={dashBoardDataStyle} className={classNames('flex w-full h-full border-rd-50% border-white shadow-[0_20px_30px_0] shadow-#00000026 box-border flex-col justify-center items-center relative z-11 font-size-14px line-height-20px fw-700', dashBoardDataCls)}>
           <span className="data-title">{title}</span>
-          <span className="data-percent skew-x--10deg font-size-40px fw-800 line-height-48px letter-spacing--0.25px">
+          <span className="data-percent skew-x--6deg font-size-40px fw-800 line-height-48px letter-spacing--0.25px">
             {(Math.floor(percent)) || '--'}
-            {!!percent && <span className="font-size-28px line-height-26px">%</span>}
+            {!!percent && <span className="skew-x-6deg font-size-28px line-height-26px">%</span>}
           </span>
         </div>
       </div>
