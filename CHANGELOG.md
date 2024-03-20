@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/JacobZyy/react-dashboard/compare/v0.0.6...v0.0.7) (2024-03-20)
+
+
+### Features
+
+* update text skew angle ([4a61a48](https://github.com/JacobZyy/react-dashboard/commit/4a61a48f45675ef61c19fd6836c9f76a8b751554))
+
 ### [0.0.6](https://github.com/JacobZyy/react-dashboard/compare/v0.0.5...v0.0.6) (2024-03-20)
 
 
