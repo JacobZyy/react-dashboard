@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { getSectorPath } from '@/utils/getClipPathValue'
+import { getSectorPath } from '../../utils'
 
 export interface DashBoardMaskProps {
   fillColor: string

@@ -5,32 +5,30 @@
   "private": false,
   "exports": {
     ".": {
-      "import": "./dist/react-dashboard.js",
-      "require": "./dist/react-dashboard.umd.cjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
     }
   },
-  "main": "./dist/react-dashbooard.umd.cjs",
-  "module": "./dist/react-dashboard.js",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc -p ./tsconfig.types.json",
     "release": "standard-version",
     "lint": "eslint --fix",
     "prepare": "husky install"
   },
   "peerDependencies": {
+    "chroma-js": "^2.4.2",
     "classnames": "^2.5.1",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
-  "dependencies": {
-    "@antfu/eslint-config": "^2.6.4",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-unused-imports": "^3.0.0"
-  },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.6.4",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@eslint/eslintrc": "^3.0.1",
@@ -42,11 +40,12 @@
     "@typescript-eslint/parser": "^6.14.0",
     "@unocss/eslint-config": "^0.58.5",
     "@vitejs/plugin-react": "^4.2.1",
-    "chroma-js": "^2.4.2",
     "classnames": "^2.5.1",
     "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "gulp": "^4.0.2",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.1",
@@ -56,8 +55,8 @@
     "standard-version": "^9.5.0",
     "typescript": "^5.2.2",
     "unocss": "^0.58.5",
-    "unocss-preset-chroma-forked": "^0.0.3",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-libcss": "^1.1.1"
   },
   "commitlint": {
     "extends": [

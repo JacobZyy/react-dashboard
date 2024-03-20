@@ -1,4 +1,5 @@
-import DashBoard from './DashBoard'
-import 'virtual:uno.css'
+import DashBoard, { type DashBoardProps } from './DashBoard'
 
-export { DashBoard }
+export { type DashBoardProps }
+
+export default DashBoard

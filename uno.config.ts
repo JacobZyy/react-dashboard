@@ -21,14 +21,6 @@ export default defineConfig({
     transformerVariantGroup(),
   ],
   rules: [
-    // [/^border-(.*)$/, ([, c], { rawSelector }) => {
-    //   const selector = toEscapedSelector(rawSelector)
-    //   return `
-    //   ${selector} {
-    //     background: radial-gradient(${c});
-    //   }
-    //   `
-    // }],
     [/^letter-spacing-(.+)$/, ([, c], { rawSelector }) => {
       const selector = toEscapedSelector(rawSelector)
       return `${selector} {

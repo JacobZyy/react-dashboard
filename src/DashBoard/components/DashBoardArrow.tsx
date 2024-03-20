@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
-import { defaultDashBoardSize, wheelWidthPercent } from '@/utils/commonValues'
+import { defaultDashBoardSize, wheelWidthPercent } from '../../utils'
 
-interface DashBoardArrowProps {
+export interface DashBoardArrowProps {
   fillColor: string
   percent: number
   dashBoardSize: number

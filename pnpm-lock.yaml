@@ -29,8 +29,8 @@ specifiers:
   standard-version: ^9.5.0
   typescript: ^5.2.2
   unocss: ^0.58.5
-  unocss-preset-chroma-forked: ^0.0.3
   vite: ^5.0.8
+  vite-plugin-libcss: ^1.1.1
 
 dependencies:
   '@antfu/eslint-config': 2.8.3_qx4z6qstgat7vszxvb7rgvybna
@@ -63,8 +63,8 @@ devDependencies:
   standard-version: 9.5.0
   typescript: 5.4.2
   unocss: 0.58.6_vite@5.1.6
-  unocss-preset-chroma-forked: 0.0.3_chroma-js@2.4.2
   vite: 5.1.6_duumn6wgefiuywu4qhpnzf3id4
+  vite-plugin-libcss: 1.1.1_vite@5.1.6
 
 packages:
 
@@ -7486,15 +7486,6 @@ packages:
     engines: {node: '>= 10.0.0'}
     dev: true
 
-  /unocss-preset-chroma-forked/0.0.3_chroma-js@2.4.2:
-    resolution: {integrity: sha512-ptVwQS+XdrLHE2IcdtCoIpW3OLXcILE84Oo8fziiiXgc7ply699FZuMYZclIm3ZZ+bSYPmgKhVqYsSnffc2zcA==}
-    engines: {node: '>=14.18'}
-    peerDependencies:
-      chroma-js: 2.4.2
-    dependencies:
-      chroma-js: 2.4.2
-    dev: true
-
   /unocss/0.58.6_vite@5.1.6:
     resolution: {integrity: sha512-HBstDtC6KKD5yCYh5hHpPdHGZai0B/iLlDwkOIK+xfQYrvl8tNBvKfRz3xgiaI5MJ+fLmEOxbfXQIjleU1A0iA==}
     engines: {node: '>=14'}
@@ -7642,6 +7633,15 @@ packages:
       cloneable-readable: 1.1.3
       remove-trailing-separator: 1.1.0
       replace-ext: 1.0.1
+    dev: true
+
+  /vite-plugin-libcss/1.1.1_vite@5.1.6:
+    resolution: {integrity: sha512-WAk6U9iYWMbcu7cdw4wACpVebZiLHMyyE9KTcBzzkTt1cnXj3a7loIoIGNblx+xMb9quPpO3iRbNTOnIFDzgmg==}
+    peerDependencies:
+      vite: '*'
+    dependencies:
+      minimatch: 9.0.3
+      vite: 5.1.6_duumn6wgefiuywu4qhpnzf3id4
     dev: true
 
   /vite/5.1.6_duumn6wgefiuywu4qhpnzf3id4:

@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { DashBoard } from '..'
+// eslint-disable-next-line antfu/no-import-dist
+import DashBoard from './dist/index.js'
+
 import './App.css'
 
 function App() {

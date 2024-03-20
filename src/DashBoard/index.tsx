@@ -1,37 +1,54 @@
-import React, { type CSSProperties, useEffect, useRef, useState } from 'react'
-
+import React, { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
 import classNames from 'classnames'
-import getCurrentPercentColor, { getColorWithOpacity } from '../utils/getCurrentPercentColor'
-import type { DashBoardMaskProps } from './components/DashBoardMask'
-import DashBoardArrow from './components/DashBoardArrow'
-import type { DashBoardRingProps } from './components/DashBoardRing'
-import DashBoardRing from './components/DashBoardRing'
-import DashBoardMask from './components/DashBoardMask'
-import type { RingPathConfig } from '@/utils/getClipPathValue'
-import { defaultDashBoardSize, updateStep, wheelWidthPercent } from '@/utils/commonValues'
+import chroma from 'chroma-js'
 
-interface DashboardProps {
+import { type RingPathConfig, defaultConicGradientColor, defaultDashBoardSize, getCurrentColor, updateStep, wheelWidthPercent } from '../utils'
+import { DashBoardArrow, DashBoardMask, type DashBoardMaskProps, DashBoardRing, type DashBoardRingProps } from './components'
+import 'virtual:uno.css'
+
+export interface DashBoardProps {
+  /** the percent of this dashboard */
   percent: number
+  /** dashboard title */
   title?: string
-  wheelCls?: string
+  /** dashboard data className for customized its style */
   dashBoardDataCls?: string
+  /**
+   *  @description the size of dashboard
+   *  @default 188px
+   */
   dashBoardSize?: number
-  wheelBackground?: string
-  backgroundColor?: string
+  /**
+   *  the bg of your container of dashboard
+   *  for fill the color in the small ring to make it feel like bg-transparent
+   */
+  bgColor?: string
+
+  /** gradient color */
+  conicGradientColor?: string
 }
 
-const defaultBackgroundColor = 'conic-gradient(from 90deg at 50% 50%, #8FFF00 45deg, #11CF00 77.5deg, #FFD80E 103.5deg, #FF7A00 182deg, #FE3B36 315deg)'
-const DashBoard: React.FC<DashboardProps> = (props) => {
+const DashBoard: React.FC<DashBoardProps> = (props) => {
   const {
-    backgroundColor,
+    bgColor,
     title = 'title',
     percent: targetPercent,
     dashBoardSize = defaultDashBoardSize,
-    wheelBackground = defaultBackgroundColor,
-    wheelCls,
+    conicGradientColor = defaultConicGradientColor,
     dashBoardDataCls,
   } = props
   const [percent, setPercent] = useState<number>(0)
+
+  const { deltaColors, colorStyle } = useMemo(() => {
+    const chromaScalce = getCurrentColor(conicGradientColor)
+    const deltaColors = chromaScalce.colors(100)
+    deltaColors[0] = '#101114'
+    const colorStyle = `conic-gradient(from 90deg at 50% 50%,${chromaScalce.colors(10).join(', ')})`
+    return {
+      deltaColors,
+      colorStyle,
+    }
+  }, [conicGradientColor])
 
   const latestPercent = useRef<number>(percent)
   latestPercent.current = percent
@@ -61,7 +78,8 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
     handleUpdatePercent()
   }, [targetPercent])
 
-  const curColor = getCurrentPercentColor(percent, wheelBackground)
+  /** 从270色盘上的百分比转换成360色盘上的百分比 */
+  const curColor = deltaColors[Math.round(percent * 270 / 360)]
 
   const dashBoardStyle: CSSProperties = {
     width: dashBoardSize,
@@ -76,12 +94,11 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
 
   const dashBoardRingConfig: DashBoardRingProps = {
     pathConfig: ringPathConfig,
-    background: wheelBackground,
-    className: wheelCls,
+    background: colorStyle,
   }
 
   const dashBoardMaskConfig: DashBoardMaskProps = {
-    fillColor: getColorWithOpacity(curColor, 0.08),
+    fillColor: chroma(curColor).alpha(0.08).toString(),
     size: dashBoardSize - wheelWidth,
   }
 
@@ -96,10 +113,10 @@ const DashBoard: React.FC<DashboardProps> = (props) => {
       <DashBoardMask {...dashBoardMaskConfig} />
 
       <div className="dashboard-data relative z-11 h-68% w-68%">
-        <DashBoardArrow dashBoardSize={dashBoardSize} smallRingBackground={backgroundColor} fillColor={curColor} percent={percent} />
+        <DashBoardArrow dashBoardSize={dashBoardSize} smallRingBackground={bgColor} fillColor={curColor} percent={percent} />
         <div style={dashBoardDataStyle} className={classNames('flex w-full h-full border-rd-50% border-white shadow-[0_20px_30px_0] shadow-#00000026 box-border flex-col justify-center items-center relative z-11 font-size-14px line-height-20px fw-700', dashBoardDataCls)}>
           <span className="data-title">{title}</span>
-          <span className="data-percent letter-spacing--0.25px skew-x--10deg font-size-40px fw-800 line-height-48px">
+          <span className="data-percent skew-x--10deg font-size-40px fw-800 line-height-48px letter-spacing--0.25px">
             {(Math.floor(percent)) || '--'}
             {!!percent && <span className="font-size-28px line-height-26px">%</span>}
           </span>
