@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/JacobZyy/react-dashboard/compare/v0.0.5...v0.0.6) (2024-03-20)
+
+
+### Bug Fixes
+
+* update dependencies ([5207c56](https://github.com/JacobZyy/react-dashboard/commit/5207c56b05ca5564b48c29d9511016e08fc2022d))
+
 ### [0.0.5](https://github.com/JacobZyy/react-dashboard/compare/v0.0.4...v0.0.5) (2024-03-20)
 
 
