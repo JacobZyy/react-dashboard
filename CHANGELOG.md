@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/JacobZyy/react-dashboard/compare/v0.0.3...v0.0.4) (2024-03-20)
+
+
+### Features
+
+* 补充提交 ([ffeb1cb](https://github.com/JacobZyy/react-dashboard/commit/ffeb1cb328204c182f9edef151d8b0b15eb58146))
+* 接入unocss ([aad3b94](https://github.com/JacobZyy/react-dashboard/commit/aad3b94bc16e8120186eb5b8358f54da30ed677b))
+* 全员迁移unocss, 更细小圆环的位置 ([b0b2b76](https://github.com/JacobZyy/react-dashboard/commit/b0b2b7612a93ca02d22248138e104c88ae914e14))
+* 全员迁移unocss, 更细小圆环的位置 ([7dc9b40](https://github.com/JacobZyy/react-dashboard/commit/7dc9b40ba6c5329786a79f5f62734f81023c0523))
+* 全员迁移unocss, 更细小圆环的位置 ([05d5506](https://github.com/JacobZyy/react-dashboard/commit/05d550610ed897ba4ac610cd6c22b92206391bad))
+* update packages, use chromajs and fix the color config ([5b2c205](https://github.com/JacobZyy/react-dashboard/commit/5b2c205a7664d3c71f9558d66e808fad664fbe6d))
+
 ### [0.0.3](https://github.com/JacobZyy/react-dashboard/compare/v0.0.2...v0.0.3) (2024-02-23)
 
 ### [0.0.2](https://github.com/JacobZyy/react-dashboard/compare/v0.0.2-alpha.0...v0.0.2) (2024-02-23)
