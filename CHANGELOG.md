@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/JacobZyy/react-dashboard/compare/v1.1.0...v1.2.0) (2024-03-25)
+
+
+### Features
+
+* 增加控制是否展示动画功能 ([29c52aa](https://github.com/JacobZyy/react-dashboard/commit/29c52aa561b8b140fe51c0515c119e6753c33b67))
+* Create LICENSE ([18a5a2e](https://github.com/JacobZyy/react-dashboard/commit/18a5a2ebde0b5c45b1fece23caea1b9518f0532a))
+
+
+### Bug Fixes
+
+* delete glup test file ([9b9eafd](https://github.com/JacobZyy/react-dashboard/commit/9b9eafd5ddbb1135f09527d03f12e51147b7f3e5))
+
 ## [1.1.0](https://github.com/JacobZyy/react-dashboard/compare/v1.0.1...v1.1.0) (2024-03-20)
 
 
