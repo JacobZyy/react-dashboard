@@ -26,6 +26,11 @@ export interface DashBoardProps {
 
   /** gradient color */
   conicGradientColor?: string
+  /**
+   * @description if you dont need the animation of dashboard, make it false
+   * @default true
+   */
+  showAnimation?: boolean
 }
 
 const DashBoard: React.FC<DashBoardProps> = (props) => {
@@ -36,8 +41,10 @@ const DashBoard: React.FC<DashBoardProps> = (props) => {
     dashBoardSize = defaultDashBoardSize,
     conicGradientColor = defaultConicGradientColor,
     dashBoardDataCls,
+    showAnimation = true,
   } = props
-  const [percent, setPercent] = useState<number>(0)
+  const [originPercent, setPercent] = useState<number>(0)
+  const percent = showAnimation ? originPercent : targetPercent
 
   const { deltaColors, colorStyle } = useMemo(() => {
     const chromaScalce = getCurrentColor(conicGradientColor)
@@ -56,6 +63,8 @@ const DashBoard: React.FC<DashBoardProps> = (props) => {
   const wheelWidth = dashBoardSize * wheelWidthPercent
 
   useEffect(() => {
+    if (!showAnimation)
+      return
     const fixedTargetPercent = Math.min(Math.max(0, targetPercent), 100)
     const handleUpdatePercent = () => {
       if (latestPercent.current + updateStep < fixedTargetPercent) {
@@ -76,7 +85,7 @@ const DashBoard: React.FC<DashBoardProps> = (props) => {
       }
     }
     handleUpdatePercent()
-  }, [targetPercent])
+  }, [targetPercent, showAnimation])
 
   /** 从270色盘上的百分比转换成360色盘上的百分比 */
   const curColor = deltaColors[Math.round(percent * 270 / 360)]
