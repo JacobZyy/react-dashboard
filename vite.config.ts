@@ -17,6 +17,7 @@ export default defineConfig({
     },
   },
   build: {
+    minify: false,
     lib: {
       entry: resolve(__dirname, './src'),
       name: 'ReactDashBoard',
