@@ -38,6 +38,11 @@ export interface DashBoardProps {
   bgColor?: string
   /** gradient color */
   conicGradientColor?: string
+  /**
+   * @description if you dont need the animation of dashboard, make it false
+   * @default true
+   */
+  showAnimation?: boolean
 }
 ```
 
@@ -61,7 +66,7 @@ export default function () {
 ```tsx
 export default function () {
   const [percent, setPercent] = useState<number>(30)
-  return <DashBoard percent={percent} dashBoardSize={300}/>
+  return <DashBoard percent={percent} dashBoardSize={300} />
 }
 ```
 
@@ -70,11 +75,11 @@ export default function () {
 #### 也许你想换个颜色
 
 ```tsx
-  const newBg = 'conic-gradient(from 90deg at 50% 50%, #69C7BC 0deg, #69C7BC 44.93379235267639deg, #38A1DD 77.43765950202942deg, #B052D1 142.20000386238098deg, #F12F75 182.07465648651123deg, #FF00B8 315.5447030067444deg)'
+const newBg = 'conic-gradient(from 90deg at 50% 50%, #69C7BC 0deg, #69C7BC 44.93379235267639deg, #38A1DD 77.43765950202942deg, #B052D1 142.20000386238098deg, #F12F75 182.07465648651123deg, #FF00B8 315.5447030067444deg)'
 
-  export default function () {
+export default function () {
   const [percent, setPercent] = useState<number>(30)
-  return <DashBoard percent={percent} dashBoardSize={300} conicGradientColor={newBg}/>
+  return <DashBoard percent={percent} dashBoardSize={300} conicGradientColor={newBg} />
 }
 ```
 
@@ -85,9 +90,9 @@ export default function () {
 同样的，你也可以通过传递`dashBoardDataCls`这个类名来实现内部表盘数据的自定义
 
 ```tsx
-  export default function () {
+export default function () {
   const [percent, setPercent] = useState<number>(30)
-  return <DashBoard percent={percent} dashBoardSize={300} conicGradientColor={newBg} dashBoardDataCls={"myClassName"}/>
+  return <DashBoard percent={percent} dashBoardSize={300} conicGradientColor={newBg} dashBoardDataCls="myClassName" />
 }
 ```
 
