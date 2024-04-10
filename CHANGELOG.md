@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/JacobZyy/react-dashboard/compare/v1.2.3...v1.2.4) (2024-04-10)
+
+
+### Features
+
+* 初值不触发渲染动画 ([5917797](https://github.com/JacobZyy/react-dashboard/commit/5917797478859a44100a16e9d4d374012095b518))
+
 ### [1.2.3](https://github.com/JacobZyy/react-dashboard/compare/v1.2.2...v1.2.3) (2024-03-25)
 
 ### [1.2.2](https://github.com/JacobZyy/react-dashboard/compare/v1.2.1...v1.2.2) (2024-03-25)
