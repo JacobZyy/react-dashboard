@@ -43,7 +43,7 @@ const DashBoard: React.FC<DashBoardProps> = (props) => {
     dashBoardDataCls,
     showAnimation = true,
   } = props
-  const [originPercent, setPercent] = useState<number>(0)
+  const [originPercent, setPercent] = useState<number>(targetPercent)
   const percent = showAnimation ? originPercent : targetPercent
 
   const { deltaColors, colorStyle } = useMemo(() => {

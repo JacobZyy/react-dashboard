@@ -5,7 +5,7 @@ import DashBoard from '..'
 import './App.css'
 
 function App() {
-  const [state, setState] = useState(0)
+  const [state, setState] = useState(30)
   const handleUpdatePercent = (e: React.ChangeEvent<HTMLInputElement>) => {
     const percent = Number.parseInt(e.target.value ?? '0')
     setState(percent)
@@ -16,7 +16,7 @@ function App() {
   return (
     <div>
       <input type="number" onChange={handleUpdatePercent} />
-      <DashBoard percent={state} title="AI Score" showAnimation={false} dashBoardSize={300} conicGradientColor={testBkg} />
+      <DashBoard percent={state} title="AI Score" dashBoardSize={300} conicGradientColor={testBkg} />
     </div>
   )
 }
