@@ -51,7 +51,7 @@ export interface DashBoardProps {
 ### Basic Usage
 
 ```tsx
-export default function App () {
+export default function App() {
   const [percent, setPercent] = useState<number>(30)
   return <DashBoard percent={percent} />
 }
@@ -64,7 +64,7 @@ export default function App () {
 #### 也许你想要改变dashboar的大小
 
 ```tsx
-export default function App () {
+export default function App() {
   const [percent, setPercent] = useState<number>(30)
   return <DashBoard percent={percent} dashBoardSize={300} />
 }
@@ -77,7 +77,7 @@ export default function App () {
 ```tsx
 const newBg = 'conic-gradient(from 90deg at 50% 50%, #69C7BC 0deg, #69C7BC 44.93379235267639deg, #38A1DD 77.43765950202942deg, #B052D1 142.20000386238098deg, #F12F75 182.07465648651123deg, #FF00B8 315.5447030067444deg)'
 
-export default function App () {
+export default function App() {
   const [percent, setPercent] = useState<number>(30)
   return <DashBoard percent={percent} dashBoardSize={300} conicGradientColor={newBg} />
 }
@@ -90,7 +90,7 @@ export default function App () {
 同样的，你也可以通过传递`dashBoardDataCls`这个类名来实现内部表盘数据的自定义
 
 ```tsx
-export default function App () {
+export default function App() {
   const [percent, setPercent] = useState<number>(30)
   return <DashBoard percent={percent} dashBoardSize={300} conicGradientColor={newBg} dashBoardDataCls="myClassName" />
 }
