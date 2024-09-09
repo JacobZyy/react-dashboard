@@ -1,8 +1,8 @@
-import React, { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
-import classNames from 'classnames'
 import chroma from 'chroma-js'
+import classNames from 'classnames'
+import React, { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
 
-import { type RingPathConfig, defaultConicGradientColor, defaultDashBoardSize, getCurrentColor, updateStep, wheelWidthPercent } from '../utils'
+import { defaultConicGradientColor, defaultDashBoardSize, getCurrentColor, type RingPathConfig, updateStep, wheelWidthPercent } from '../utils'
 import { DashBoardArrow, DashBoardMask, type DashBoardMaskProps, DashBoardRing, type DashBoardRingProps } from './components'
 import 'virtual:uno.css'
 

@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import UnoCSS from 'unocss/vite'
+import { defineConfig } from 'vite'
 import libCss from 'vite-plugin-libcss'
 
 // https://vitejs.dev/config/

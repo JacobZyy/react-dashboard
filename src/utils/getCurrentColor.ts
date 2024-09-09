@@ -8,7 +8,7 @@ function extractColor(color: string): [color: string, stopVal: number][] {
 
   const [_, colorConfigStr] = colorConfig
 
-  const colorGroupsReg = /(?:#(?:[\da-f]{4}){1,2}|[\w]+\(.*?\)|[\w]+)\s+([\d.]+(?:%|deg)?)/gi
+  const colorGroupsReg = /(?:#(?:[\da-f]{4}){1,2}|\w+\(.*?\)|\w+)\s+([\d.]+(?:%|deg)?)/gi
   const colorGroups = colorConfigStr.match(colorGroupsReg)
   if (!colorGroups)
     throw new Error('no match valid color')

@@ -1,16 +1,13 @@
-import antfu, { unocss } from '@antfu/eslint-config'
-import { FlatCompat } from '@eslint/eslintrc'
+import antfu from '@antfu/eslint-config'
 
-const compat = new FlatCompat()
-
-export default antfu(
-  {
-    typescript: true,
+export default antfu({
+  formatters: true,
+  unocss: true,
+  react: true,
+  typescript: true,
+  regexp: false,
+}).append({
+  rules: {
+    'no-console': 'warn',
   },
-  ...compat.config({
-    rules: {
-      'no-console': 'warn',
-    },
-  }),
-  unocss(),
-)
+})

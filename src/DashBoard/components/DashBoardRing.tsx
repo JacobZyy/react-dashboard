@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'react'
 import classNames from 'classnames'
-import { type RingPathConfig, getRingPath } from '../../utils'
+import type { CSSProperties } from 'react'
+import { getRingPath, type RingPathConfig } from '../../utils'
 
 export type DashBoardRingProps = {
   pathConfig: RingPathConfig
